@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  host: <%= ENV['POSTGRES_HOST'] %>
+  timeout: 5000
+  pool: 5
+
+development:
+  <<: *default
+  database: serial_notificator_development
+
+test:
+  <<: *default
+  database: serial_notificator_test
+
+production:
+  <<: *default
+  database: serial_notificator_production
+
+staging:
+  <<: *default
+  database: serial_notificator_staging

@@ -1,0 +1,16 @@
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/*.rb
+    - vendor/**/*
+    - node_modules/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 50
