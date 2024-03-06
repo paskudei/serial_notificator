@@ -3,8 +3,14 @@
 # Тест сервис для интеграции с телеграмом
 module Telegram
   class GetMeService < BaseService
-    def call
-      Faraday.get(service_url)
+    private
+
+    def request_method
+      :get
+    end
+
+    def endpoint
+      'getMe'
     end
   end
 end

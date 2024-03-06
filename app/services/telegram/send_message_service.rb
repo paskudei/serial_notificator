@@ -9,13 +9,15 @@ module Telegram
       @message = message
     end
 
-    def call
-      Faraday.post(service_url) do |request|
-        request.body = body
-      end
+    private
+
+    def request_method
+      :post
     end
 
-    private
+    def endpoint
+      'sendMessage'
+    end
 
     def body
       {

@@ -3,25 +3,38 @@
 module Telegram
   class BaseService
     def call
-      raise NotImplementedError
+      connection = Faraday.new(
+        url: "https://api.telegram.org/bot#{token}/#{endpoint}"
+      )
+
+      case request_method
+      when :get, :head, :delete, :trace
+        connection.send(request_method)
+      when :post, :put, :patch
+        connection.send(request_method) do |request|
+          request.body = body
+        end
+      else
+        raise NotImplementedError, "Undefined HTTP request method `#{request_method}`"
+      end
     end
 
     private
 
-    # URL запроса формируется из доменного имени, токена бота и эндпоинта
-    def service_url
-      "https://api.telegram.org/bot#{token}/#{endpoint}"
+    def request_method
+      raise NotImplementedError
     end
 
     def token
       Rails.application.credentials.telegram_bot[:token]
     end
 
-    # Эндпоинт формируется автоматически из названия сервиса.
-    # Например, для запроса на получение информации о боте, необходимо указать эндпоинт /getMe
-    # Сервис, который будет отвечать за запрос в этот URL должен иметь имя как GetMeService
     def endpoint
-      self.class.to_s.gsub('Service', '').split('::').last
+      raise NotImplementedError
+    end
+
+    def body
+      {}
     end
   end
 end
