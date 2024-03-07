@@ -8,7 +8,7 @@ module AnimeGo
       @parsed_url = parsed_url
       @serial_url = parsed_url.original_url
       @serial_host = parsed_url.host
-      @serial_endpoint = parsed_url.endpoint
+      @serial_endpoint = parsed_url.endpoint.gsub('/anime/', '/')
     end
 
     def call
