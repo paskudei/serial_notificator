@@ -2,7 +2,7 @@
 
 module AnimeGo
   module Anime
-    class FetchFullPageService
+    class FetchPageService
       attr_reader :serial_endpoint
 
       def initialize(serial_endpoint:)
@@ -10,7 +10,7 @@ module AnimeGo
       end
 
       def call
-        Faraday.get("https://animego.org/anime/#{serial_endpoint}")
+        Faraday.get("https://animego.org/anime#{serial_endpoint}")
       end
     end
   end
