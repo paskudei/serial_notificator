@@ -13,6 +13,7 @@ gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
+gem 'telegram-bot'
 gem 'turbo-rails'
 
 group :development, :test do
