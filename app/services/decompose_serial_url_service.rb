@@ -12,7 +12,7 @@ class DecomposeSerialUrlService
     Adapter.new(
       original_url: url,
       host: parsed_url.host,
-      endpoint: parsed_url.request_uri.gsub('/anime/', '/')
+      endpoint: parsed_url.request_uri
     )
   end
 
