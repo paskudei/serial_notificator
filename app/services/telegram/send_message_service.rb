@@ -22,7 +22,8 @@ module Telegram
     def body
       {
         chat_id: to,
-        text: message
+        text: message,
+        parse_mode: 'Markdown'
       }
     end
   end
