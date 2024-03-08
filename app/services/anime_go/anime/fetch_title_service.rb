@@ -10,7 +10,11 @@ module AnimeGo
       end
 
       def call
-        Nokogiri::HTML(html).xpath("//div[@class='anime-title']")[0].children[0].children[0].text
+        Nokogiri::HTML(html)
+                &.xpath("//div[@class='anime-title']")&.[](0)
+                &.children&.[](0)
+                &.children&.[](0)
+                &.text
       end
     end
   end

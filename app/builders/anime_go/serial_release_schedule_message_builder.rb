@@ -12,7 +12,9 @@ module AnimeGo
     end
 
     def call
-      schedule_as_text = schedule.map do |episode|
+      return unless schedule
+
+      schedule_as_text = adapted_schedule.map do |episode|
         "*Номер серии:* #{episode.episode_number}\n" \
           "*Название:* #{episode.title}\n" \
           "*Дата выхода:* #{I18n.l(episode.release_date, format: :long)}\n" \
@@ -35,11 +37,11 @@ module AnimeGo
     end
 
     def schedule
-      AnimeGo::Anime::FetchEpisodeReleaseScheduleAdapter.new(
-        schedule: AnimeGo::Anime::FetchEpisodeReleaseScheduleService.new(
-          html: request.body
-        ).call
-      ).call
+      AnimeGo::Anime::FetchEpisodeReleaseScheduleService.new(html: request.body).call
+    end
+
+    def adapted_schedule
+      AnimeGo::Anime::FetchEpisodeReleaseScheduleAdapter.new(schedule:).call
     end
   end
 end

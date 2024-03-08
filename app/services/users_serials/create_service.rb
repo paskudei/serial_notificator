@@ -11,13 +11,13 @@ module UsersSerials
     end
 
     def call
-      create_users_serial!
+      create_users_serial
     end
 
     private
 
-    def create_users_serial!
-      UsersSerial.create!(user:, serial:, is_tracked: true, source:, url:, endpoint:)
+    def create_users_serial
+      UsersSerial.create(user:, serial:, is_tracked: true, source:, url:, endpoint:)
     end
 
     def decomposed_url

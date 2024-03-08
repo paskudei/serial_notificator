@@ -12,8 +12,6 @@ class SerialTitleBuilder
     when 'animego.org'
       page = AnimeGo::Anime::FetchPageService.new(serial_endpoint: decomposed_url.endpoint.gsub('/anime/', '/')).call
       AnimeGo::Anime::FetchTitleService.new(html: page.body).call
-    else
-      raise NotImplementedError
     end
   end
 
