@@ -13,9 +13,24 @@ module Telegram
       render_text_message(add_serial_url_service.message)
     end
 
-    def serials_list!
-      serials_list_service = Telegram::SerialsListService.new(user: current_user).call
-      render_text_message(serials_list_service.message)
+    def add_schedule!(time = nil)
+      add_schedule_service = Telegram::AddScheduleService.new(user: current_user, time:).call
+      render_text_message(add_schedule_service.message)
+    end
+
+    def delete_schedule!(time = nil)
+      delete_schedule_service = Telegram::DeleteScheduleService.new(user: current_user, time:).call
+      render_text_message(delete_schedule_service.message)
+    end
+
+    def serials!
+      serials_service = Telegram::SerialsService.new(user: current_user).call
+      render_text_message(serials_service.message)
+    end
+
+    def schedule!
+      schedule_service = Telegram::ScheduleService.new(user: current_user).call
+      render_text_message(schedule_service.message)
     end
 
     private

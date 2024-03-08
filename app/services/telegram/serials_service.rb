@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module Telegram
-  class SerialsListService
+  class SerialsService
     attr_reader :user
 
     def initialize(user:)
       @user = user
     end
 
-    # @return [Telegram::SerialsListService::Response]
+    # @return [Telegram::SerialsService::Response]
     def call
       Response.new(
         serials: users_serials,
