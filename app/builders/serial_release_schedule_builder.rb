@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SerialTitleBuilder
+class SerialReleaseScheduleBuilder
   attr_reader :url
 
   def initialize(url:)
@@ -10,8 +10,9 @@ class SerialTitleBuilder
   def call
     case decomposed_url.host
     when 'animego.org'
-      page = AnimeGo::Anime::FetchPageService.new(serial_endpoint: decomposed_url.endpoint.gsub('/anime/', '/')).call
-      AnimeGo::Anime::FetchTitleService.new(html: page.body).call
+      AnimeGo::SerialReleaseScheduleMessageBuilder.new(parsed_url: decomposed_url).call
+    else
+      raise NotImplementedError
     end
   end
 

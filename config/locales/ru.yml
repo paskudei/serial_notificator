@@ -17,7 +17,7 @@ ru:
     - Пт
     - Сб
     abbr_month_names:
-    - 
+    -
     - янв.
     - февр.
     - марта
@@ -43,7 +43,7 @@ ru:
       long: "%-d %B %Y"
       short: "%-d %b"
     month_names:
-    - 
+    -
     - января
     - февраля
     - марта
@@ -113,6 +113,12 @@ ru:
         few: "%{count} дня"
         many: "%{count} дней"
         other: "%{count} дней"
+      left_x_days:
+        zero: 'Уже сегодня!'
+        one: "Остался %{count} день"
+        few: "Осталось %{count} дня"
+        many: "Осталось %{count} дней"
+        other: "Осталось %{count} дней"
       x_months:
         one: "%{count} месяц"
         few: "%{count} месяца"

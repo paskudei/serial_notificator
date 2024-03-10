@@ -11,9 +11,13 @@ gem 'faraday'
 gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
+gem 'redis'
+gem 'sidekiq'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
+gem 'telegram-bot'
 gem 'turbo-rails'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug'

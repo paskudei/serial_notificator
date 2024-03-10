@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_07_174922) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_08_204431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_174922) do
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "time", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_schedules_on_user_id"
+  end
+
   create_table "serials", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", null: false
@@ -30,8 +38,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_174922) do
 
   create_table "users", force: :cascade do |t|
     t.string "chat_id", null: false
-    t.string "phone"
+    t.boolean "is_bot", default: false, null: false
+    t.string "first_name"
+    t.string "last_name"
     t.string "username"
+    t.string "language_code"
     t.boolean "enable_notifications", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_07_174922) do
   end
 
   add_foreign_key "requests", "users"
+  add_foreign_key "schedules", "users"
   add_foreign_key "users_serials", "serials"
   add_foreign_key "users_serials", "users"
 end
