@@ -10,7 +10,7 @@ module AnimeGo
       end
 
       def call
-        return unless episode_release_schedule_div
+        raise Error, html_document unless episode_release_schedule_div
 
         episode_release_schedule_div.map do |episode_div|
           episode_div_info = episode_div.children[0].children[0].children
@@ -31,6 +31,9 @@ module AnimeGo
           &.xpath("//div[@class='row released-episodes-container']")&.[](0)
           &.children
           &.first(3)
+      end
+
+      class Error < StandardError
       end
     end
   end
