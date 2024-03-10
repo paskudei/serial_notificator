@@ -22,6 +22,6 @@
 
 set :output, { standard: "log/#{@environment}/cron.log", error: "log/#{@environment}/whenever_error.log" }
 
-every 1.day, at: '00:00' do
+every 1.day, at: '19:10' do
   rake 'set_schedules_notifiers:call'
 end
