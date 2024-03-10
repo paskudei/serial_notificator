@@ -10,7 +10,18 @@ module AnimeGo
       end
 
       def call
-        Faraday.get("https://animego.org/anime#{serial_endpoint}")
+        raise Error, Nokogiri::HTML(request.body) unless request.success?
+
+        request
+      end
+
+      private
+
+      def request
+        @request ||= Faraday.get("https://animego.org/anime#{serial_endpoint}")
+      end
+
+      class Error < StandardError
       end
     end
   end

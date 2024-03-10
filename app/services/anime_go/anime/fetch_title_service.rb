@@ -23,9 +23,9 @@ module AnimeGo
 
       def fetch_title
         html_document&.xpath("//div[@class='anime-title']")&.[](0)
-                       &.children&.[](0)
-                       &.children&.[](0)
-                       &.text
+                     &.children&.[](0)
+                     &.children&.[](0)
+                     &.text
       end
 
       class Error < StandardError
